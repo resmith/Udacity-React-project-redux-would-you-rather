@@ -1,3 +1,0 @@
-export const handleNav = (path, history) => {
-    history.push(path);
-};

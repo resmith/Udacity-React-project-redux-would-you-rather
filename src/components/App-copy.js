@@ -42,7 +42,7 @@ const NavMenu = ({dispatch}) => (
     <MenuItem primaryText="New Question" onClick={() => dispatch(push('/questions/new'))}/>
   </IconMenu>)
 
-const Logged = ({dispatch, userId}) => (
+const Logged = ({dispatch}) => (
   <IconMenu iconButtonElement={<IconButton > <MoreVertIcon/></IconButton>}
     targetOrigin={{
       horizontal: 'right',
@@ -53,7 +53,6 @@ const Logged = ({dispatch, userId}) => (
     }}>
     <MenuItem primaryText="Sign out" onClick={() => dispatch(push('/signin'))}/>
     <MenuItem primaryText="Help" onClick={() => dispatch(push('/help'))}/>
-    <MenuItem primaryText={userId} />
   </IconMenu>)
 
 class App extends Component {
@@ -64,8 +63,7 @@ class App extends Component {
 
   render () {
     console.log('App props:', this.props)
-    console.log('App state:', this.state)
-    const { history, authedUser, dispatch } = this.props
+    const { history } = this.props
 
     return (<Fragment>
       <MuiThemeProvider>
@@ -78,10 +76,10 @@ class App extends Component {
                 : <div>
                   <AppBar
                     title="Would You Rather?"
-                    iconElementLeft={<NavMenu dispatch={dispatch} />}
-                    iconElementRight={authedUser
-                      ? <Logged dispatch={dispatch} userId={authedUser}/>
-                      : <Login dispatch={dispatch} />}/>
+                    iconElementLeft={<NavMenu dispatch={this.props.dispatch} />}
+                    iconElementRight={this.props.authedUser
+                      ? <Logged dispatch={this.props.dispatch} />
+                      : <Login dispatch={this.props.dispatch} />}/>
                   <ConnectedRouter history={history}>
                     {routes}
                   </ConnectedRouter>
