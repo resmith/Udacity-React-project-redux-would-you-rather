@@ -3,14 +3,14 @@ import { connect } from 'react-redux'
 import { Link, withRouter } from 'react-router-dom'
 
 class Question extends Component {
-  render() {
-    const { question  } = this.props
+  render () {
+    const { question } = this.props
 
     if (question === null) {
       return <p>This Question doesn't existd</p>
     }
 
-    const { id, author, timestamp, optionOne, optionTwo} = question
+    const { id, optionOne, optionTwo } = question
 
     return (
       <Link to={`/question/${id}`}className='question'>

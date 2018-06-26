@@ -5,7 +5,7 @@ import NewQuestion from '../components/NewQuestion'
 import Signin from '../components/Signin'
 import Help from '../components/Help'
 
-export const protectedRoutes = (
+const routes = (
   <div>
     <Switch>
       <Route path='/' exact component={Dashboard}/>
@@ -17,10 +17,4 @@ export const protectedRoutes = (
   </div>
 )
 
-export const signinRoute = (
-  <div>
-    <Switch>
-      <Route path='/' component={Signin}/>
-    </Switch>
-  </div>
-)
+export default routes

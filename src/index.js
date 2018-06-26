@@ -6,6 +6,7 @@ import thunkMiddleware from 'redux-thunk'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { createBrowserHistory } from 'history'
+import { loadingBarMiddleware } from 'react-redux-loading-bar'
 
 // import { Router, Route, browserHistory } from 'react-router'
 // import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
@@ -23,7 +24,7 @@ const store = createStore(
   connectRouter(history)(rootReducer),
   composeEnhancer(
     applyMiddleware(
-      thunkMiddleware, routerMiddleware(history), logger
+      thunkMiddleware, routerMiddleware(history), loadingBarMiddleware(), logger
     )
   )
 )

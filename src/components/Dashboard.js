@@ -8,19 +8,18 @@ import MenuItem from 'material-ui/MenuItem';
 import Question from './Question'
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: 1};
+  componentWillMount () {
+    this.setState({questions: 1})
   }
 
-  handleChange = (event, index, value) => this.setState({value});
+  handleChange = (event, index, value) => this.setState({questions: value});
 
   render() {
 
     return (
       <div>
         <h3 className='center'>The Questions</h3>
-        <DropDownMenu value={this.state.value} onChange={this.handleChange}>
+        <DropDownMenu value={this.state.questions} onChange={this.handleChange}>
           <MenuItem value={1} primaryText="Unanwered Questions" />
           <MenuItem value={2} primaryText="Anwered Questions" />
         </DropDownMenu>
