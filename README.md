@@ -2,6 +2,39 @@
 ## Redux Final project
 ## Would you Rather by R.E.Smith
 
+Notes:
+* Found a much easier way to implemented protected routes than out on the internet
+* Doesn't redirect but won't expose components except those authorized
+```bash
+
+  components/App.js (authedUser is from the store)
+    <ConnectedRouter history={history}>
+      {authedUser ? protectedRoutes : signinRoute }
+    </ConnectedRouter>
+
+    routes/index.js
+    export const protectedRoutes = (
+      <div>
+        <Switch>
+          <Route path='/' exact component={Dashboard}/>
+          <Route path='/questions/new' exact component={NewQuestion}/>
+          <Route path='/signin' exact component={Signin}/>
+          <Route path='/help' exact component={Help}/>
+
+        </Switch>
+      </div>
+    )
+
+    export const signinRoute = (
+      <div>
+        <Switch>
+          <Route path='/' component={Signin}/>
+        </Switch>
+      </div>
+    )    
+```
+
+
 
 # Design
 ## Redux Store

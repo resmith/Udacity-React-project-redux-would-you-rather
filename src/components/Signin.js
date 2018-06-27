@@ -29,8 +29,6 @@ class Signin extends Component {
 
 
   render() {
-    console.log('Signin props:', this.props)
-    console.log('Signin state:', this.state)
     const { userIds } = this.props;
 
 

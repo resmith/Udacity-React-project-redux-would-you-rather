@@ -7,38 +7,59 @@ import MenuItem from 'material-ui/MenuItem';
 
 import Question from './Question'
 
+const UNANSWERED = 'unanswered'
+const ANSWERED = 'answered'
+
 class Dashboard extends Component {
+
   componentWillMount () {
-    this.setState({questions: 1})
+    this.setState({questions: UNANSWERED})
   }
 
   handleChange = (event, index, value) => this.setState({questions: value});
 
   render() {
+    console.log('Dashboard props:', this.props);
+    console.log('Dashboard state:', this.state);
+    const { authedUser } = this.props;
 
     return (
       <div>
         <h3 className='center'>The Questions</h3>
         <DropDownMenu value={this.state.questions} onChange={this.handleChange}>
-          <MenuItem value={1} primaryText="Unanwered Questions" />
-          <MenuItem value={2} primaryText="Anwered Questions" />
+          <MenuItem value={UNANSWERED} primaryText="Unanswered Questions" />
+          <MenuItem value={ANSWERED} primaryText="Answered Questions" />
         </DropDownMenu>
         <ul className='dashboard-list'>
-          {this.props.questionIds.map((id) => (
-            <li key={id}>
-              <Question id={id} />
-            </li>
-          ))}
+          { this.state.questions === UNANSWERED &&
+            this.props.questions.filter(question =>
+              question.optionOne.votes.includes(authedUser) === false &&
+              question.optionTwo.votes.includes(authedUser) === false )
+            .map((question) => (
+              <li key={question.id}>
+                <Question id={question.id} />
+              </li>
+            ))}
+
+          { this.state.questions === ANSWERED &&
+            this.props.questions.filter(question => question.optionOne.votes.includes(authedUser)
+              || question.optionTwo.votes.includes(authedUser)).map((question) => (
+              <li key={question.id}>
+                <Question id={question.id} />
+              </li>
+            ))}
+
+
         </ul>
       </div>
     )
   }
 }
 
-function mapStateToProps ({ questions}) {
+function mapStateToProps ({ authedUser, questions}) {
   return {
-    questionIds: Object.keys(questions)
-    .sort((a,b) => questions[b].timpestamp  - questions[a].timestamp)
+    authedUser,
+    questions: Object.values(questions)
   }
 }
 
