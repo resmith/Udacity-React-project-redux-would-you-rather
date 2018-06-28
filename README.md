@@ -1,6 +1,10 @@
-# Udaciity - React - project
+# Udacity - React - project
 ## Redux Final project
-## Would you Rather by R.E.Smith
+## Would you Rather
+by R.E.Smith
+
+
+[Project Specs](./ProjectSpecs.md)
 
 Notes:
 * Found a much easier way to implemented protected routes than out on the internet
@@ -142,10 +146,3 @@ App                 Source
                   calls changeShelf to make the change and passed
                   down via props
 ```
-
-##  `Project Specification - Rubric Checklist`
-###   Application Setup
-- [x] Is the application easy to install and start?
-- [x] The application was created with create-react-app and requires only  npm install and npm start to get it installed and launched?  Was created with starter code  
-- [x] Does the application include README with clear installation and launch instructions?    
-- [x] An updated README that describes the project and has instructions for installing and launching the project is included.   
