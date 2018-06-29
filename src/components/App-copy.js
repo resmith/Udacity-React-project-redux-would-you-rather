@@ -17,17 +17,9 @@ import FlatButton from 'material-ui/FlatButton'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu'
 
-import { Route, Switch, Redirect } from 'react-router'
-
-// import { protectedRoutes, publicRoutes, signinRoute } from '../routes'
+import { protectedRoutes, signinRoute } from '../routes'
 import {handleInitialData} from '../actions/shared'
 import { setAuthedUser } from '../actions/authedUser'
-import Dashboard from '../components/Dashboard'
-import NewQuestion from '../components/NewQuestion'
-import Questions from '../components/Questions'
-import Signin from '../components/Signin'
-import Help from '../components/Help'
-import PageNotFound from '../components/PageNotFound'
 
 // class Login extends Component {
 //   render () {
@@ -74,7 +66,7 @@ class App extends Component {
   render () {
     console.log('App props:', this.props)
     console.log('App state:', this.state)
-    const { history, authedUser, dispatch, router } = this.props
+    const { history, authedUser, dispatch } = this.props
 
     return (
       <MuiThemeProvider>
@@ -87,38 +79,19 @@ class App extends Component {
               : <Login dispatch={dispatch} />}/>
           <LoadingBar />
           <ConnectedRouter history={history}>
-            <Switch>
-              {/* Public Routes */}
-              <Route path='/help' exact component={Help}/>
-              <Route exact path='/signin' component={Signin}/>
-
-              {/* Protected Routes */}
-              {authedUser && <Route exact path='/' component={Dashboard}/> }
-              {authedUser && <Route exact path='/questions/new' component={NewQuestion}/> }
-              {authedUser && <Route exact path='/questions/:questionId' component={Questions}/> }
-
-              {/*  If no routes match and user is authenticated */}
-              {authedUser && <Route path='/' component={PageNotFound}/> }
-
-              {/*  If no routes match and user is NOT authenticated */}
-              {!authedUser && router.location.pathname !== '/signin' &&
-                <Redirect from="/" to="/signin"/>
-              }
-            </Switch>
-
+            {authedUser ? protectedRoutes : signinRoute }
           </ConnectedRouter>
-          <ReactTooltip />
         </div>
+        <ReactTooltip />
       </MuiThemeProvider>
     )
   }
 }
 
-function mapStateToProps ({authedUser, router}) {
+function mapStateToProps ({authedUser}) {
   return {
     authedUser,
-    loading: authedUser === null,
-    router
+    loading: authedUser === null
   }
 }
 

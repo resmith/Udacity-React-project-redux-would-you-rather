@@ -25,7 +25,7 @@
 - [x] 3.1.1 The answered and unanswered polls are both available at the root.
 - [x] 3.1.2 The user can alternate between viewing answered and unanswered polls.
 - [x] 3.1.3 The unanswered questions are shown by default.
-- [ ] 3.1.4 The name of the logged in user is visible on the page.
+- [x] 3.1.4 The name of the logged in user is visible on the page.
 - [ ] 3.1.5 The user can navigate to the leaderboard.
 - [ ] 3.1.6 The user can navigate to the form that allows the user to create a new poll.
 
@@ -35,18 +35,18 @@
 - [ ] 3.2.3 The polls in both categories are arranged from the most recently created (top) to the least recently created (bottom).
 
 #### 3.3 Are the details of each poll displayed with all of the relevant information?
-- [ ] 3.3.1 The details of the poll are available at questions/:question_id.
-- [ ] 3.3.2 When a poll is clicked on the home page, the following is shown:
-- [ ] * the text “Would You Rather”;
-- [ ] * the picture of the user who posted the polling question; and
-- [ ] * the two options.
-- [ ] 3.3.3 For answered polls, each of the two options contains the following:
-- [ ] the text of the option;
-- [ ] the number of people who voted for that option;
-- [ ] the percentage of people who voted for that option.
-- [ ] 3.3.4 The option selected by the logged in user should be clearly marked.
-- [ ] 3.3.5 When the user is logged in, the details of the poll are shown. If the user is logged out, he/she is asked to log in before before being able to access the poll.
-- [ ] 3.3.6 The application asks the user to sign in and shows a 404 page if that poll does not exist. (Please keep in mind that new polls will not be accessible at their url because of the way the backend is set up in this application.)
+- [x] 3.3.1 The details of the poll are available at questions/:question_id.
+- [x] 3.3.2 When a poll is clicked on the home page, the following is shown:
+* the text “Would You Rather”
+* the picture of the user who posted the polling question; and
+* the two options.
+- [x] 3.3.3 For answered polls, each of the two options contains the following:
+* the text of the option;
+* the number of people who voted for that option;
+* the percentage of people who voted for that option.
+- [x] 3.3.4 The option selected by the logged in user should be clearly marked.
+- [x] 3.3.5 When the user is logged in, the details of the poll are shown. If the user is logged out, he/she is asked to log in before before being able to access the poll.
+- [x] 3.3.6 The application asks the user to sign in and shows a 404 page if that poll does not exist. (Please keep in mind that new polls will not be accessible at their url because of the way the backend is set up in this application.)
 
 #### 3.4 Does the voting mechanism work correctly?
 - [ ] 3.4.1 Upon voting in a poll, all of the information of the answered poll is displayed.

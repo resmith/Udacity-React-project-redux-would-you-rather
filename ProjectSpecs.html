@@ -1,61 +1,75 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Check Project Specs</title>
-  </head>
-  <body>
 
-    <h2>Check Project Spec</h2>
-    <p>Check the project specs for completed and uncompleted tasks</p>
+<head>
+  <meta charset="UTF-8" />
+  <title>Check Project Specs</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script>
 
-    <p>
-      This is the first comment.
-      <!-- We will put our React component inside this div. -->
-      <div class="like_button_container" data-commentid="1"></div>
-    </p>
 
-    <p>
-      This is the second comment.
-      <!-- We will put our React component inside this div. -->
-      <div class="like_button_container" data-commentid="2"></div>
-    </p>
+  var openFile = function(event) {
+    var input = event.target;
+    console.log(input);
+    console.log(input.files[0]);
 
-    <p>
-      This is the third comment.
-      <!-- We will put our React component inside this div. -->
-      <div class="like_button_container" data-commentid="3"></div>
-    </p>
+    var reader = new FileReader();
+    reader.onload = function(){
+      let incompleteText = ''
+      let completedText = ''
 
-    <!-- Load React. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-
-    <!-- Load our React component. -->
-    <script src="like_button.js"></script>
-
-    <script>
-    function readTextFile(file) {
-      var rawFile = new XMLHttpRequest();
-      rawFile.open("GET", file, false);
-      rawFile.onreadystatechange = function ()
-      {
-          if(rawFile.readyState === 4)
-          {
-              if(rawFile.status === 200 || rawFile.status == 0)
-              {
-                  var allText = rawFile.responseText;
-                  alert(allText);
-              }
-          }
+    // By lines
+    let incompleteTaskCount = 0;
+    let completedTaskCount = 0;
+    var lines = reader.result.split('\n');
+    for(var line = 0; line < lines.length; line++){
+      if (lines[line].includes('[x]')) {
+        completedText +=  lines[line] + '<br />'
+        completedTaskCount += 1
+      } else if (lines[line].includes('[ ]')) {
+        incompleteText +=  lines[line] + '<br />'
+        incompleteTaskCount += 1
+      } else {
+        completedText +=  lines[line] + '<br />'
+        incompleteText +=  lines[line] + '<br />'
       }
-      rawFile.send(null);
     }
 
+    const nodeIncompletedTask = document.getElementById('incompleteTask');
+    const nodeIncompleteTaskCount = document.getElementById('incompleteTaskCount');
 
-    readTextFile("file:///./ProjectSpecs.html");
-    </script>
+    const nodeCompletedTask = document.getElementById('completedTask');
+    const nodecompletedTaskCount = document.getElementById('completedTaskCount');
 
-  </body>
+    nodeIncompletedTask.innerHTML = incompleteText;
+    nodeIncompleteTaskCount.innerHTML = incompleteTaskCount;
+    nodeCompletedTask.innerHTML = completedText;
+    nodecompletedTaskCount.innerHTML = completedTaskCount;
+    };
+
+    reader.readAsText(input.files[0]);
+  };
+  </script>
+</head>
+
+<body>
+  <h1>Check Project Spec</h2>
+  <p>Check the project specs for completed and uncompleted tasks</p>
+
+  <input type='file' accept='.md' onchange='openFile(event, "output2")'><br>
+
+  <h2> Summary </h2>
+  Incomplete Task:<span id='incompleteTaskCount'> ... </span>
+  Completed Task:<span id='completedTaskCount'> ... </span>
+
+
+  <h2> Uncompleted Tasks </h2>
+  <div id='incompleteTask'> ... </div>
+
+  <h2> Completed Tasks </h2>
+  <div id='completedTask'> ... </div>
+</body>
+
 </html>
+
+<!--  Inspiration from https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file -->
