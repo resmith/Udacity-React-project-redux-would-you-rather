@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 // import {Link, withRouter} from 'react-router-dom'
 import {ConnectedRouter, push} from 'connected-react-router'
+import ReactTooltip from 'react-tooltip'
 
 import LoadingBar from 'react-redux-loading-bar'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
@@ -81,6 +82,7 @@ class App extends Component {
             {authedUser ? protectedRoutes : signinRoute }
           </ConnectedRouter>
         </div>
+        <ReactTooltip />
       </MuiThemeProvider>
     )
   }

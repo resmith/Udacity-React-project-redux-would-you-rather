@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class NewQuestion extends Component {
-  render() {
-
+  render () {
     return (
       <div>
         New Question

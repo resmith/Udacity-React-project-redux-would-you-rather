@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Check Project Specs</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <script>
+
+
+  var openFile = function(event) {
+    var input = event.target;
+    console.log(input);
+    console.log(input.files[0]);
+
+    var reader = new FileReader();
+    reader.onload = function(){
+      let incompletedText = ''
+      let completedText = ''
+      let nodeIncompletedTask = document.getElementById('incompletedTask');
+      let nodeCompletedTask = document.getElementById('completedTask');
+
+    // By lines
+    var lines = reader.result.split('\n');
+    for(var line = 0; line < lines.length; line++){
+      if (lines[line].includes('[x]')) {
+        completedText +=  lines[line] + '<br />'
+      } else if (lines[line].includes('[ ]')) {
+        incompletedText +=  lines[line] + '<br />'
+      } else {
+        completedText +=  lines[line] + '<br />'
+        incompletedText +=  lines[line] + '<br />'
+
+      }
+    }
+    nodeIncompletedTask.innerHTML = incompletedText;
+    nodeCompletedTask.innerHTML = completedText;
+    };
+
+    reader.readAsText(input.files[0]);
+  };
+  </script>
+</head>
+
+<body>
+  <h1>Check Project Spec</h2>
+  <p>Check the project specs for completed and uncompleted tasks</p>
+
+  <input type='file' accept='.md' onchange='openFile(event, "output2")'><br>
+  <h2> Uncompleted Tasks </h2>
+  <div id='incompletedTask'> ... </div>
+
+  <h2> Completed Tasks </h2>
+  <div id='completedTask'> ... </div>
+</body>
+
+</html>
+
+<!--  Inspiration from https://stackoverflow.com/questions/14446447/how-to-read-a-local-text-file -->

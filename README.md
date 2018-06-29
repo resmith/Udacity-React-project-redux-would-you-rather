@@ -3,12 +3,16 @@
 ## Would you Rather
 by R.E.Smith
 
-
+[Project Specs Summary](./ProjectSpecs.html)
 [Project Specs](./ProjectSpecs.md)
 
 Notes:
 * Found a much easier way to implemented protected routes than out on the internet
 * Doesn't redirect but won't expose components except those authorized
+* Avatars have a tooltip showing the username
+* The user currently logged in is on the appBar drop-down on the right
+
+
 ```bash
 
   components/App.js (authedUser is from the store)
@@ -61,6 +65,7 @@ connected-react-router
 react-hot-loader
 material-ui
 react-icons
+react-tooltip
 
 
 ## `Installation`
