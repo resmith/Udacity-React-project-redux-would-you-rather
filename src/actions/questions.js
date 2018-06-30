@@ -1,21 +1,44 @@
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
+import { RECEIVE_QUESTIONS, ADD_VOTE, ADD_QUESTION } from '../utils/constants'
+import { saveQuestionAnswer } from '../utils/api'
+import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
-export function receiveQuestions (questions){
+export function receiveQuestions (questions) {
   return {
     type: RECEIVE_QUESTIONS,
-    questions: questions,
+    questions: questions
   }
 }
 
+function addVote (question) {
+  return {
+    type: ADD_VOTE,
+    question
+  }
+}
 
-// function addQuestion (tweet) {
-//   return {
-//     type: ADD_TWEET,
-//     tweet,
-//   }
-// }
-//
-// export function handleAddQuestion (text, replyingTo) {
+function addQuestion (question) {
+  return {
+    type: ADD_QUESTION,
+    question
+  }
+}
+
+export function handleAddVote (authedUser, qid, answer) {
+  return (dispatch, getState) => {
+    const { authedUser } = getState()
+    dispatch(showLoading())
+
+    return saveQuestionAnswer({
+      authedUser,
+      qid,
+      answer
+    })
+      .then((tweet) => dispatch(addQuestion(tweet)))
+      .then(() => dispatch(hideLoading()))
+  }
+}
+
+// export function handleAddQuestion (text, question) {
 //   return (dispatch, getState) => {
 //     const { authedUser } = getState()
 //     dispatch(showLoading())

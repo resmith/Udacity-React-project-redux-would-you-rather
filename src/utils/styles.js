@@ -1,5 +1,3 @@
-export const DEFAULT_AVATAR = '/DefaultAvatar.png'
-
 export const styles = {
   avatar: {
     margin: 5,

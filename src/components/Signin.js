@@ -6,7 +6,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import Avatar from 'material-ui/Avatar';
 
-import { DEFAULT_AVATAR } from '../utils/defaults'
+import { DEFAULT_AVATAR } from '../utils/constants'
 import { setAuthedUser } from '../actions/authedUser'
 
 class Signin extends Component {

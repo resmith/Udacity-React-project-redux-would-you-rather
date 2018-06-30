@@ -2,17 +2,24 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import CheckIcon from 'react-icons/lib/fa/check'
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
+import { handleAddVote } from '../actions/questions'
 import PageNotFound from '../components/PageNotFound'
-
-import { DEFAULT_AVATAR, styles } from '../utils/defaults'
+import { DEFAULT_AVATAR } from '../utils/constants'
+import { styles } from '../utils/styles'
 
 class Questions extends Component {
+  handleAddVote (vote) {
+    const { authedUser, question, dispatch } = this.props
+    console.log('You voted for:', vote)
+
+    dispatch(handleAddVote(authedUser, question.id, vote))
+  }
+
   render () {
     console.log('Questions props:', this.props)
-
     const { authedUser, question, users } = this.props
     if (!question) { return <PageNotFound /> }
 
@@ -24,8 +31,8 @@ class Questions extends Component {
     const TotalNum = optionOneNum + optionTwoNum
     const optionOnePercent = TotalNum ? Math.floor((optionOneNum / TotalNum) * 100) : 0
     const optionTwoPercent = TotalNum ? Math.floor((optionTwoNum / TotalNum) * 100) : 0
-
     const showVotes = optionOneNum || optionTwoNum
+
 
     return (
       <Card>
@@ -58,8 +65,8 @@ class Questions extends Component {
           }
         </CardText>
         <CardActions>
-          <FlatButton label="Vote #1" />
-          <FlatButton label="Vote #2" />
+          <FlatButton label="Vote #1" onClick={() => this.handleAddVote(1)}/>
+          <FlatButton label="Vote #2" onClick={() => this.handleAddVote(2)}/>
         </CardActions>
       </Card>
 
