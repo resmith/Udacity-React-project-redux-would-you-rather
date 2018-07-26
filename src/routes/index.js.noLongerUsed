@@ -6,7 +6,6 @@ import Questions from '../components/Questions'
 import Signin from '../components/Signin'
 import Help from '../components/Help'
 
-
 // This is no longer Used
 // todo: Move the routes out of App.JS into this file
 export const allRoutes = (
@@ -15,20 +14,16 @@ export const allRoutes = (
     <Route path='/help' exact component={Help}/>
 
     {/* Protected Routes */}
-
     <Route exact path='/' component={Dashboard}/>
     <Route exact path='/questions/new' component={NewQuestion}/>
-    <Route exact path='/questions/:questionId'  component={Questions}/>
-    <Route exact path='/signin'  component={Signin}/>
+    <Route exact path='/questions/:questionId' component={Questions}/>
+    <Route exact path='/signin' component={Signin}/>
 
     {/*  Redirect to login if none match */}
     <Redirect from="/" to="/signin"/>
 
   </Switch>
 )
-
-
-
 
 export const protectedRoutes = (
   <div>

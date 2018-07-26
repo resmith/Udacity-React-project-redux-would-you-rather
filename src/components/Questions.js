@@ -17,20 +17,20 @@ class Questions extends Component {
     console.log('Questions.handleAddVote authedUser:', authedUser)
     console.log('Questions.handleAddVote vote:', vote)
 
-    dispatch(handleAddVote(question, authedUser, vote))
+    dispatch(handleAddVote(question, vote, authedUser))
   }
 
   render () {
-    console.log('component\Questions props:', this.props)
+    console.log('component Questions props:', this.props)
     const { authedUser, question, users, match } = this.props
-    console.log('component\Questions question:', question)
+    console.log('component Questions question:', question)
     if (!question) { return <PageNotFound /> }
 
     const questionAuthor = users.find(user => user.id === question.author)
-    console.log('component\Questions question.author:', question.author)
-    console.log('component\Questions questionAuthor:', questionAuthor)
+    console.log('component Questions question.author:', question.author)
+    console.log('component Questions questionAuthor:', questionAuthor)
     const id = match.params.questionId
-    console.log('component\Questions id:', id)
+    console.log('component Questions id:', id)
     const theQuestion = Object.assign({}, question[id])
     console.log('Questions theQuestion:', theQuestion)
 
@@ -41,7 +41,6 @@ class Questions extends Component {
     const optionOnePercent = TotalNum ? Math.floor((optionOneNum / TotalNum) * 100) : 0
     const optionTwoPercent = TotalNum ? Math.floor((optionTwoNum / TotalNum) * 100) : 0
     const showVotes = optionOneNum || optionTwoNum
-
 
     return (
       <Card>
