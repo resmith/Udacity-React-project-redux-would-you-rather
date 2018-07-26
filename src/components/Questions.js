@@ -13,17 +13,26 @@ import { styles } from '../utils/styles'
 class Questions extends Component {
   handleAddVote (vote) {
     const { authedUser, question, dispatch } = this.props
-    console.log('You voted for:', vote)
+    console.log('Questions.handleAddVote question:', question)
+    console.log('Questions.handleAddVote authedUser:', authedUser)
+    console.log('Questions.handleAddVote vote:', vote)
 
-    dispatch(handleAddVote(authedUser, question.id, vote))
+    dispatch(handleAddVote(question, authedUser, vote))
   }
 
   render () {
-    console.log('Questions props:', this.props)
-    const { authedUser, question, users } = this.props
+    console.log('component\Questions props:', this.props)
+    const { authedUser, question, users, match } = this.props
+    console.log('component\Questions question:', question)
     if (!question) { return <PageNotFound /> }
 
     const questionAuthor = users.find(user => user.id === question.author)
+    console.log('component\Questions question.author:', question.author)
+    console.log('component\Questions questionAuthor:', questionAuthor)
+    const id = match.params.questionId
+    console.log('component\Questions id:', id)
+    const theQuestion = Object.assign({}, question[id])
+    console.log('Questions theQuestion:', theQuestion)
 
     // Create the votes variables
     const optionOneNum = question.optionOne.votes ? question.optionOne.votes.length : 0
@@ -65,11 +74,10 @@ class Questions extends Component {
           }
         </CardText>
         <CardActions>
-          <FlatButton label="Vote #1" onClick={() => this.handleAddVote(1)}/>
-          <FlatButton label="Vote #2" onClick={() => this.handleAddVote(2)}/>
+          <FlatButton label="Vote #1" onClick={() => this.handleAddVote('optionOne')}/>
+          <FlatButton label="Vote #2" onClick={() => this.handleAddVote('optionTwo')}/>
         </CardActions>
       </Card>
-
     )
   }
 }

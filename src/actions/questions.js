@@ -9,10 +9,15 @@ export function receiveQuestions (questions) {
   }
 }
 
-function addVote (question) {
+function addVote (question, answer, authedUser) {
+  console.log('actions addVote question:', question)
+  console.log('actions addVote authedUser:', authedUser)
+  console.log('actions addVote vote:', answer)
   return {
     type: ADD_VOTE,
-    question
+    question,
+    answer,
+    authedUser
   }
 }
 
@@ -23,17 +28,21 @@ function addQuestion (question) {
   }
 }
 
-export function handleAddVote (authedUser, qid, answer) {
+export function handleAddVote (question, vote, authedUser ) {
+  console.log('actions handleAddVote question:', question)
+  console.log('actions handleAddVote authedUser:', authedUser)
+  console.log('actions handleAddVote vote:', vote)
   return (dispatch, getState) => {
     const { authedUser } = getState()
+    console.log('actions handleAddVote return authedUser:', authedUser)
     dispatch(showLoading())
 
     return saveQuestionAnswer({
       authedUser,
-      qid,
-      answer
+      qid: question.id,
+      answer: vote
     })
-      .then((tweet) => dispatch(addQuestion(tweet)))
+      .then(() => dispatch(addVote(question, vote, authedUser)))
       .then(() => dispatch(hideLoading()))
   }
 }
