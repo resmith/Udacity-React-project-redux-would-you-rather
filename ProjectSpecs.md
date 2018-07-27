@@ -31,7 +31,7 @@
 
 #### 3.2 Are the polling questions listed in the correct category (Unanswered vs Answered), and do they have the desired functionality on the home page?
 - [x] 3.2.1 Each polling question resides in the correct category. For example, if a question hasn’t been answered by the current user, it should be in the “Unanswered” category.
-- [ ] 3.2.2 A polling question links to details of that poll.
+- [x] 3.2.2 A polling question links to details of that poll.
 - [ ] 3.2.3 The polls in both categories are arranged from the most recently created (top) to the least recently created (bottom).
 
 #### 3.3 Are the details of each poll displayed with all of the relevant information?
@@ -49,9 +49,9 @@
 - [x] 3.3.6 The application asks the user to sign in and shows a 404 page if that poll does not exist. (Please keep in mind that new polls will not be accessible at their url because of the way the backend is set up in this application.)
 
 #### 3.4 Does the voting mechanism work correctly?
-- [ ] 3.4.1 Upon voting in a poll, all of the information of the answered poll is displayed.
-- [ ] 3.4.2 The user’s response is recorded and is clearly visible on the poll details page.
-- [ ] 3.4.3 When the user comes back to the home page, the polling question appears in the “Answered” column.
+- [x] 3.4.1 Upon voting in a poll, all of the information of the answered poll is displayed.
+- [x] 3.4.2 The user’s response is recorded and is clearly visible on the poll details page.
+- [x] 3.4.3 When the user comes back to the home page, the polling question appears in the “Answered” column.
 - [ ] 3.4.4 The voting mechanism works correctly, and the data on the leaderboard changes appropriately.
 
 #### 3.5 Can users add new polls?

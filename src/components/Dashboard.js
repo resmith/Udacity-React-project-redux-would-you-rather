@@ -18,8 +18,7 @@ const Question = (props) => {
   return (
     // <Link to={`/questions/1234`}className='question'>
     <Link to={`/questions/${props.question.id}`}className='question'>
-      Would you rather {props.question.optionOne.text} or
-      {props.question.optionTwo.text}?
+      Would you rather {props.question.optionOne.text} or {props.question.optionTwo.text}?
     </Link>
   )
 }

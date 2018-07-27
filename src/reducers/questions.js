@@ -7,24 +7,15 @@ export default function questions (state = {}, action) {
         ...state,
         ...action.questions
       }
-      // // case ADD_QUESTION :
-      // // const { question } = action
-      // //
-      // // let replyingTo = {}
-      // // if (question.replyingTo !== null ){
-      // //   replyingTo = {
-      // //     [question.replyingTo]: {
-      // //       ...state[question.replyingTo],
-      // //       replies: state[question.replyingTo].replies.concat([question.id])
-      // //     }
-      // //   }
-      // // }
-      // return {
-      //   ...state,
-      //   [action.question.id]: action.question,
-      // }
+    case ADD_QUESTION :
+      // console.log('***** reducer ADD_QUESTION action', action)
+
+      return {
+        ...state,
+        [action.question.id]: action.question
+      }
     case ADD_VOTE :
-      console.log('***** reducer ADD_VOTE', action)
+      // console.log('***** reducer ADD_VOTE action', action)
       const { question, answer, authedUser } = action
 
       let updatedQuestion = { ...state[action.question.id],

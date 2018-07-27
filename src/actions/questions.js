@@ -1,5 +1,5 @@
 import { RECEIVE_QUESTIONS, ADD_VOTE, ADD_QUESTION } from '../utils/constants'
-import { saveQuestionAnswer } from '../utils/api'
+import { saveQuestionAnswer, saveQuestion } from '../utils/api'
 import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export function receiveQuestions (questions) {
@@ -29,9 +29,6 @@ function addQuestion (question) {
 }
 
 export function handleAddVote (question, vote, authedUser ) {
-  console.log('actions handleAddVote question:', question)
-  console.log('actions handleAddVote authedUser:', authedUser)
-  console.log('actions handleAddVote vote:', vote)
   return (dispatch, getState) => {
     const { authedUser } = getState()
     console.log('actions handleAddVote return authedUser:', authedUser)
@@ -47,17 +44,20 @@ export function handleAddVote (question, vote, authedUser ) {
   }
 }
 
-// export function handleAddQuestion (text, question) {
-//   return (dispatch, getState) => {
-//     const { authedUser } = getState()
-//     dispatch(showLoading())
-//
-//     return saveQuestion({
-//       text,
-//       author: authedUser,
-//       replyingTo
-//     })
-//     .then((tweet) => dispatch(addQuestion(tweet)))
-//     .then(() => dispatch(hideLoading()))
-//   }
-// }
+export function handleAddQuestion (info) {
+
+  return (dispatch, getState) => {
+    console.log('actions questions handleAddQuestion info:', info)
+    const { authedUser } = getState()
+    dispatch(showLoading())
+
+    const question = {
+      optionOneText: info.optionOneText,
+      optionTwoText: info.optionTwoText,
+      author: info.author
+    }
+    return saveQuestion(question)
+      .then((savedQuestion) => dispatch(addQuestion(savedQuestion)))
+      .then(() => dispatch(hideLoading()))
+  }
+}
