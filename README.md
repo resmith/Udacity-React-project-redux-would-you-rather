@@ -25,7 +25,7 @@ Notes:
       <div>
         <Switch>
           <Route path='/' exact component={Dashboard}/>
-          <Route path='/questions/new' exact component={NewQuestion}/>
+          <Route path='/questions/new' exact component={NewPoll}/>
           <Route path='/signin' exact component={Signin}/>
           <Route path='/help' exact component={Help}/>
 

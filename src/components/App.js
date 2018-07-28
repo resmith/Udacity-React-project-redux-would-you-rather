@@ -23,8 +23,9 @@ import { Route, Switch, Redirect } from 'react-router'
 import {handleInitialData} from '../actions/shared'
 import { setAuthedUser } from '../actions/authedUser'
 import Dashboard from '../components/Dashboard'
-import NewQuestion from '../components/NewQuestion'
+import NewPoll from '../components/NewPoll'
 import Questions from '../components/Questions'
+import Leaderboard from '../components/Leaderboard'
 import Signin from '../components/Signin'
 import Help from '../components/Help'
 import PageNotFound from '../components/PageNotFound'
@@ -50,6 +51,7 @@ const NavMenu = ({dispatch}) => (
     }}>
     <MenuItem primaryText="Home" onClick={() => dispatch(push('/'))}/>
     <MenuItem primaryText="New Question" onClick={() => dispatch(push('/questions/new'))}/>
+    <MenuItem primaryText="Leaderboard" onClick={() => dispatch(push('/leaderboard'))}/>
   </IconMenu>)
 
 const Logged = ({dispatch, userId}) => (
@@ -91,10 +93,11 @@ class App extends Component {
               {/* Public Routes */}
               <Route path='/help' exact component={Help}/>
               <Route exact path='/signin' component={Signin}/>
+              <Route exact path='/leaderboard' component={Leaderboard}/>
 
               {/* Protected Routes */}
               {authedUser && <Route exact path='/' component={Dashboard}/> }
-              {authedUser && <Route exact path='/questions/new' component={NewQuestion}/> }
+              {authedUser && <Route exact path='/questions/new' component={NewPoll}/> }
               {authedUser && <Route exact path='/questions/:questionId' component={Questions}/> }
 
               {/*  If no routes match and user is authenticated */}

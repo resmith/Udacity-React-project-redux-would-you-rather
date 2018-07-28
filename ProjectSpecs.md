@@ -27,7 +27,7 @@
 - [x] 3.1.3 The unanswered questions are shown by default.
 - [x] 3.1.4 The name of the logged in user is visible on the page.
 - [ ] 3.1.5 The user can navigate to the leaderboard.
-- [ ] 3.1.6 The user can navigate to the form that allows the user to create a new poll.
+- [x] 3.1.6 The user can navigate to the form that allows the user to create a new poll.
 
 #### 3.2 Are the polling questions listed in the correct category (Unanswered vs Answered), and do they have the desired functionality on the home page?
 - [x] 3.2.1 Each polling question resides in the correct category. For example, if a question hasn’t been answered by the current user, it should be in the “Unanswered” category.
@@ -55,10 +55,10 @@
 - [ ] 3.4.4 The voting mechanism works correctly, and the data on the leaderboard changes appropriately.
 
 #### 3.5 Can users add new polls?
-- [ ] 3.5.1 The form is available at/add.
-- [ ] 3.5.2 The application shows the text “Would You Rather” and has a form for creating two options.
-- [ ] 3.5.3 Upon submitting the form, a new poll is created and the user is taken to the home page.
-- [ ] 3.5.4 The new polling question appears in the correct category on the home page.
+- [x] 3.5.1 The form is available at/add.
+- [x] 3.5.2 The application shows the text “Would You Rather” and has a form for creating two options.
+- [x] 3.5.3 Upon submitting the form, a new poll is created and the user is taken to the home page.
+- [x] 3.5.4 The new polling question appears in the correct category on the home page.
 
 #### 3.6 Does the leaderboard work correctly and have the desired functionality?
 - [ ] 3.6.1 The Leaderboard is available at/leaderboard.
@@ -70,33 +70,33 @@
 - [ ] 3.6.3 Users are ordered in descending order based on the sum of the number of questions they’ve answered and the number of questions they’ve asked.
 
 #### 3.7 Is the application navigable?
-- [ ] 3.7.1 The app contains a navigation bar that is visible on all of the pages.
+- [x] 3.7.1 The app contains a navigation bar that is visible on all of the pages.
 - [ ] 3.7.2 The user can navigate between the page for creating new polls, and the leaderboard page, and the home page without typing the address into the address bar.
 
 #### 3.8 Does the application interact with the backend correctly?
-- [ ] 3.8.1 The data that’s initially displayed is populated correctly from the backend.
+- [x] 3.8.1 The data that’s initially displayed is populated correctly from the backend.
 - [ ] 3.8.2 Each user’s answer and each new poll is correctly recorded on the backend.
 
-#### 3.9 Is the code formatted properly?
-- [ ] 3.9.1 All code is formatted properly and is functional.
+#### 3.9 Is the code formatted properly?x
+- [x] 3.9.1 All code is formatted properly and is functional.
 
 ### 4.0 Architecture
 #### 4.1 Does the store serve as the application’s single source of truth?
-- [ ] 4.1.1 The store is the application’s source of truth.
-- [ ] 4.1.2 Components read the necessary state from the store; they do not have their own versions of the same state.
-- [ ] 4.1.3 There are no direct API calls in the components' lifecycle methods.
+- [x] 4.1.1 The store is the application’s source of truth.
+- [x] 4.1.2 Components read the necessary state from the store; they do not have their own versions of the same state.
+- [x] 4.1.3 There are no direct API calls in the components' lifecycle methods.
 
 #### 4.2 Is application state managed by Redux?
-- [ ] 4.2.1 Most application state is managed by the Redux store. State-based props are mapped from the store rather than stored as component state.
-- [ ] 4.2.2 Form inputs and controlled components may have some state handled by the component.
+- [x] 4.2.1 Most application state is managed by the Redux store. State-based props are mapped from the store rather than stored as component state.
+- [x] 4.2.2 Form inputs and controlled components may have some state handled by the component.
 
 #### 4.3 Does application state update correctly?
-- [ ] 4.3.1 Updates are triggered by dispatching action creators to reducers.
-- [ ] 4.3.2 Reducers and actions are written properly and correctly return updated state to the store.
+- [x] 4.3.1 Updates are triggered by dispatching action creators to reducers.
+- [x] 4.3.2 Reducers and actions are written properly and correctly return updated state to the store.
 
 #### 4.4 Does the architecture of the application make sense?
-- [ ] 4.4.1 The code is structured and organized in a logical way.
-- [ ] 4.4.2 Components are modular and reusable.
+- [x] 4.4.1 The code is structured and organized in a logical way.
+- [xx] 4.4.2 Components are modular and reusable.
 
 ### Suggestions to Make Your Project Stand Out!
 - [ ] Extra.1 Add the functionality for creating new users.

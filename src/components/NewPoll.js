@@ -5,11 +5,11 @@ import CheckIcon from 'react-icons/lib/fa/check'
 // import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 // import FlatButton from 'material-ui/FlatButton';
 
-import { handleAddQuestion } from '../actions/questions'
+import { handleAddPoll } from '../actions/questions'
 import PageNotFound from '../components/PageNotFound'
 // import { styles } from '../utils/styles'
 
-class NewQuestion extends Component {
+class NewPoll extends Component {
   componentWillMount () {
     this.setState({
       optionOne: '',
@@ -40,18 +40,20 @@ class NewQuestion extends Component {
       optionOneText: optionOne,
       optionTwoText: optionTwo
     }
-    dispatch(handleAddQuestion(question))
+    dispatch(handleAddPoll(question))
 
-    console.log('NewQuestion handleSubmit', question);
+    console.log('NewPoll handleSubmit', question);
 
     this.setState(() => ({
       optionOne: '',
       optionTwo: ''
     }))
+
+    this.props.history.push(`/`)
   }
 
   render () {
-    // console.log('component NewQuestion props:', this.props)
+    // console.log('component NewPoll props:', this.props)
     // const { authedUser, users, match } = this.props
     const { optionOne, optionTwo } = this.state
     const optionOneLeft = 280 - optionOne.length;
@@ -111,4 +113,4 @@ function mapStateToProps ({authedUser, users}, { match }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(NewQuestion))
+export default withRouter(connect(mapStateToProps)(NewPoll))

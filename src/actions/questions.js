@@ -44,10 +44,10 @@ export function handleAddVote (question, vote, authedUser ) {
   }
 }
 
-export function handleAddQuestion (info) {
+export function handleAddPoll (info) {
 
   return (dispatch, getState) => {
-    console.log('actions questions handleAddQuestion info:', info)
+    console.log('actions questions handleAddPoll info:', info)
     const { authedUser } = getState()
     dispatch(showLoading())
 

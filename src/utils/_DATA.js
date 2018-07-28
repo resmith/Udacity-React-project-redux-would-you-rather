@@ -158,18 +158,31 @@ export function _saveQuestion (question) {
         [formattedQuestion.id]: formattedQuestion
       }
 
+      console.log('_saveQuestion authedUser',authedUser );
+      console.log('_saveQuestion formattedQuestion',formattedQuestion );
+      console.log('_saveQuestion formattedQuestion.id',formattedQuestion.id );
+      console.log('_saveQuestion users[authedUser]',users[authedUser] );
+      const newQUestions = users[authedUser].questions.concat([formattedQuestion.id]);
+      console.log('_saveQuestion newQUestions',newQUestions );
+
       users = {
         ...users,
-        [authedUser]: {
-          ...users[authedUser],
-          questions: users[authedUser].questions.concat([formattedQuestion.id])
-        }
+        [authedUser]: { updated: 'somestuff' }
+        //   ...users[authedUser],
+        //   questions2: users[authedUser].questions.concat([formattedQuestion.id])
+        // }
       }
 
       res(formattedQuestion)
     }, 1000)
   })
 }
+
+// [authedUser]: {
+//   ...users[authedUser],
+//   questions2: users[authedUser].questions.concat([formattedQuestion.id])
+// }
+
 
 export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
   return new Promise((res, rej) => {
