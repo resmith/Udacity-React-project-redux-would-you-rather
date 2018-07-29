@@ -14,7 +14,22 @@ class Leaderboard extends Component {
   render () {
     console.log('component Leaderboard props:', this.props)
     console.log('component Leaderboard state:', this.state)
-    const { authedUser, questions, users } = this.props
+    let { questions, users } = this.props
+
+    console.log('component Leaderboard users:', users)
+
+    //***  Tally up the questions and votes
+    const leaderboard = users.sort((a, b) =>
+      (Object.keys(b.answers).length + b.questions.length) - (Object.keys(a.answers).length + a.questions.length)
+    )
+
+
+      console.log('component Leaderboard END leaderboard:', leaderboard)
+
+      leaderboard.map((user) =>
+        console.log('leaders:',user.id, user.questions.length, Object.keys(user.answers).length)
+      )
+
 
     return (
       <Card>
@@ -29,10 +44,10 @@ class Leaderboard extends Component {
           subtitle='b'
         />
         <CardText>
-c
+          c
         </CardText>
         <CardText>
-d
+          d
         </CardText>
       </Card>
     )
