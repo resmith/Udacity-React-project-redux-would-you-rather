@@ -2,7 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import CheckIcon from 'react-icons/lib/fa/check'
-import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
+import {
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table'
 import FlatButton from 'material-ui/FlatButton';
 
 import PageNotFound from '../components/PageNotFound'
@@ -15,7 +22,7 @@ class Leaderboard extends Component {
     console.log('component Leaderboard props:', this.props)
     console.log('component Leaderboard state:', this.state)
     let { questions, users } = this.props
-
+    const showCheckboxes = false
     console.log('component Leaderboard users:', users)
 
     //***  Tally up the questions and votes
@@ -23,33 +30,43 @@ class Leaderboard extends Component {
       (Object.keys(b.answers).length + b.questions.length) - (Object.keys(a.answers).length + a.questions.length)
     )
 
-
-      console.log('component Leaderboard END leaderboard:', leaderboard)
-
-      leaderboard.map((user) =>
-        console.log('leaders:',user.id, user.questions.length, Object.keys(user.answers).length)
-      )
+      // console.log('component Leaderboard END leaderboard:', leaderboard)
+      // leaderboard.map((user) =>
+      //   console.log('leaders:',user.id, user.questions.length, Object.keys(user.answers).length)
+      // )
 
 
     return (
-      <Card>
-        <CardHeader
-          title="Leaderboard"
-          subtitle=''
-          avatar=''
-          data-tip=''
-        />
-        <CardTitle
-          title='a'
-          subtitle='b'
-        />
-        <CardText>
-          c
-        </CardText>
-        <CardText>
-          d
-        </CardText>
-      </Card>
+      <div>
+      <h2>Leaderboard</h2>
+
+      <Table selectable={showCheckboxes}>
+        <TableHeader
+          displaySelectAll={showCheckboxes}
+          adjustForCheckbox={showCheckboxes}
+          >
+          <TableRow>
+            <TableHeaderColumn>User</TableHeaderColumn>
+            <TableHeaderColumn>Questions</TableHeaderColumn>
+            <TableHeaderColumn>Votes</TableHeaderColumn>
+            <TableHeaderColumn>Total</TableHeaderColumn>
+          </TableRow>
+        </TableHeader>
+        <TableBody
+          displayRowCheckbox={showCheckboxes}
+          >
+          { leaderboard.map((user) =>
+            <TableRow>
+              <TableRowColumn>{user.id}</TableRowColumn>
+              <TableRowColumn>{ user.questions.length}</TableRowColumn>
+              <TableRowColumn>{ Object.keys(user.answers).length }</TableRowColumn>
+              <TableRowColumn>{ Object.keys(user.answers).length + user.questions.length }</TableRowColumn>
+            </TableRow>
+          )
+          }
+        </TableBody>
+      </Table>
+      </div>
     )
   }
 }
