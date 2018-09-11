@@ -11,8 +11,8 @@ export default function users (state = {}, action) {
       }
 
     case ADD_VOTE_TO_USER :
-      console.log('***** reducer ADD_VOTE_TO_USER action', action)
-      console.log('***** reducer ADD_VOTE_TO_USER users', users)
+      // console.log('***** reducer ADD_VOTE_TO_USER action', action)
+      // console.log('***** reducer ADD_VOTE_TO_USER users', users)
       const { question, answer, authedUser } = action
 
       // let updatedUser = { ...users,

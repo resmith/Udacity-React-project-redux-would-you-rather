@@ -40,6 +40,7 @@ class Leaderboard extends Component {
           >
             <TableRow>
               <TableHeaderColumn>User</TableHeaderColumn>
+              <TableHeaderColumn>Pic</TableHeaderColumn>
               <TableHeaderColumn>Questions</TableHeaderColumn>
               <TableHeaderColumn>Votes</TableHeaderColumn>
               <TableHeaderColumn>Total</TableHeaderColumn>
@@ -51,6 +52,7 @@ class Leaderboard extends Component {
             { leaderboard.map((user) =>
               <TableRow key={user.id}>
                 <TableRowColumn>{user.id}</TableRowColumn>
+                <TableRowColumn><img src={user.avatarURL} className="avatar" alt={user.name} /></TableRowColumn>
                 <TableRowColumn>{ user.questions.length}</TableRowColumn>
                 <TableRowColumn>{ Object.keys(user.answers).length }</TableRowColumn>
                 <TableRowColumn>{ Object.keys(user.answers).length + user.questions.length }</TableRowColumn>

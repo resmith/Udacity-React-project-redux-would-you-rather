@@ -29,6 +29,7 @@ import Leaderboard from '../components/Leaderboard'
 import Signin from '../components/Signin'
 import Help from '../components/Help'
 import PageNotFound from '../components/PageNotFound'
+import '../App.css'
 
 // class Login extends Component {
 //   render () {
