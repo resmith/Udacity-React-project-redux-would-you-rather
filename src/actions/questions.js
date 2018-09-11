@@ -22,13 +22,14 @@ function addVote (question, answer, authedUser) {
 }
 
 function addQuestion (question) {
+  console.log('actions addQuestion question authedUser:', question)
   return {
     type: ADD_QUESTION,
     question
   }
 }
 
-export function handleAddVote (question, vote, authedUser ) {
+export function handleAddVote (question, vote, authedUser) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
     console.log('actions handleAddVote return authedUser:', authedUser)
@@ -54,9 +55,10 @@ export function handleAddPoll (info) {
     const question = {
       optionOneText: info.optionOneText,
       optionTwoText: info.optionTwoText,
-      author: info.author
+      author: authedUser
     }
     return saveQuestion(question)
+      // .then((savedQuestion) => console.log('saveQuestion2 savedQuestion', savedQuestion))
       .then((savedQuestion) => dispatch(addQuestion(savedQuestion)))
       .then(() => dispatch(hideLoading()))
   }

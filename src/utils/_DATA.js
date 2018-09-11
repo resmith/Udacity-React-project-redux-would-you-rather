@@ -158,19 +158,19 @@ export function _saveQuestion (question) {
         [formattedQuestion.id]: formattedQuestion
       }
 
-      console.log('_saveQuestion authedUser',authedUser );
-      console.log('_saveQuestion formattedQuestion',formattedQuestion );
-      console.log('_saveQuestion formattedQuestion.id',formattedQuestion.id );
-      console.log('_saveQuestion users[authedUser]',users[authedUser] );
-      const newQUestions = users[authedUser].questions.concat([formattedQuestion.id]);
-      console.log('_saveQuestion newQUestions',newQUestions );
+      // console.log('_saveQuestion authedUser',authedUser );
+      // console.log('_saveQuestion formattedQuestion',formattedQuestion );
+      // console.log('_saveQuestion formattedQuestion.id',formattedQuestion.id );
+      // console.log('_saveQuestion users[authedUser]',users[authedUser] );
+      // const newQUestions = users[authedUser].questions.concat([formattedQuestion.id]);
+      // console.log('_saveQuestion newQUestions',newQUestions );
 
       users = {
         ...users,
-        [authedUser]: { updated: 'somestuff' }
-        //   ...users[authedUser],
-        //   questions2: users[authedUser].questions.concat([formattedQuestion.id])
-        // }
+        [authedUser]: {
+          ...users[authedUser],
+         questions: users[authedUser].questions.concat([formattedQuestion.id])
+        }
       }
 
       res(formattedQuestion)

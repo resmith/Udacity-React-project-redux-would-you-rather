@@ -6,18 +6,20 @@ import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Ca
 import FlatButton from 'material-ui/FlatButton';
 
 import { handleAddVote } from '../actions/questions'
+import { handleAddVoteToUser } from '../actions/users'
 import PageNotFound from '../components/PageNotFound'
 import { DEFAULT_AVATAR } from '../utils/constants'
 import { styles } from '../utils/styles'
 
 class Questions extends Component {
   handleAddVote (vote) {
-    const { authedUser, question, dispatch } = this.props
+    const { authedUser, question, dispatch, users } = this.props
     console.log('Questions.handleAddVote question:', question)
     console.log('Questions.handleAddVote authedUser:', authedUser)
     console.log('Questions.handleAddVote vote:', vote)
 
     dispatch(handleAddVote(question, vote, authedUser))
+    dispatch(handleAddVoteToUser(question, vote, authedUser, users))
   }
 
   render () {

@@ -26,7 +26,7 @@
 - [x] 3.1.2 The user can alternate between viewing answered and unanswered polls.
 - [x] 3.1.3 The unanswered questions are shown by default.
 - [x] 3.1.4 The name of the logged in user is visible on the page.
-- [ ] 3.1.5 The user can navigate to the leaderboard.
+- [x] 3.1.5 The user can navigate to the leaderboard.
 - [x] 3.1.6 The user can navigate to the form that allows the user to create a new poll.
 
 #### 3.2 Are the polling questions listed in the correct category (Unanswered vs Answered), and do they have the desired functionality on the home page?
