@@ -1,8 +1,6 @@
-import { RECEIVE_USERS, ADD_VOTE_TO_USER } from '../utils/constants'
+import { RECEIVE_USERS, ADD_VOTE_TO_USER, ADD_QUESTION_TO_USER } from '../utils/constants'
 
 export default function users (state = {}, action) {
-  console.log('reducers/users users action', action)
-  console.log('reducers/users users state', state)
   switch (action.type) {
     case RECEIVE_USERS :
       return {
@@ -11,8 +9,6 @@ export default function users (state = {}, action) {
       }
 
     case ADD_VOTE_TO_USER :
-      // console.log('***** reducer ADD_VOTE_TO_USER action', action)
-      // console.log('***** reducer ADD_VOTE_TO_USER users', users)
       const { question, answer, authedUser } = action
 
       // let updatedUser = { ...users,
@@ -30,6 +26,15 @@ export default function users (state = {}, action) {
       return {
         ...state,
         [authedUser]: updatedUser
+      }
+
+    case ADD_QUESTION_TO_USER :
+
+      return {
+        ...state,
+        [action.question.author]: {...action.authedUser,
+          questions: action.users[action.question.author].questions.concat([action.question.id])
+        }
       }
 
     default :

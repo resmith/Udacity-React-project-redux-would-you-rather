@@ -47,7 +47,7 @@ class Dashboard extends Component {
             this.props.questions.filter(question =>
               question.optionOne.votes.includes(authedUser) === false &&
               question.optionTwo.votes.includes(authedUser) === false )
-            .map((question) => (
+            .sort((a,b) => b.timestamp - a.timestamp).map((question) => (
               <li key={question.id}>
                 <Question question={question} />
               </li>

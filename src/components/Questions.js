@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import CheckIcon from 'react-icons/lib/fa/check'
-import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 import { handleAddVote } from '../actions/questions'
@@ -14,27 +14,15 @@ import { styles } from '../utils/styles'
 class Questions extends Component {
   handleAddVote (vote) {
     const { authedUser, question, dispatch, users } = this.props
-    console.log('Questions.handleAddVote question:', question)
-    console.log('Questions.handleAddVote authedUser:', authedUser)
-    console.log('Questions.handleAddVote vote:', vote)
-
     dispatch(handleAddVote(question, vote, authedUser))
     dispatch(handleAddVoteToUser(question, vote, authedUser, users))
   }
 
   render () {
-    console.log('component Questions props:', this.props)
-    const { authedUser, question, users, match } = this.props
-    console.log('component Questions question:', question)
+    const { authedUser, question, users } = this.props
     if (!question) { return <PageNotFound /> }
 
     const questionAuthor = users.find(user => user.id === question.author)
-    console.log('component Questions question.author:', question.author)
-    console.log('component Questions questionAuthor:', questionAuthor)
-    const id = match.params.questionId
-    console.log('component Questions id:', id)
-    const theQuestion = Object.assign({}, question[id])
-    console.log('Questions theQuestion:', theQuestion)
 
     // Create the votes variables
     const optionOneNum = question.optionOne.votes ? question.optionOne.votes.length : 0
@@ -43,6 +31,8 @@ class Questions extends Component {
     const optionOnePercent = TotalNum ? Math.floor((optionOneNum / TotalNum) * 100) : 0
     const optionTwoPercent = TotalNum ? Math.floor((optionTwoNum / TotalNum) * 100) : 0
     const showVotes = optionOneNum || optionTwoNum
+    const alreadyVoted = question.optionOne.votes.includes(authedUser) ||
+                         question.optionTwo.votes.includes(authedUser)
 
     return (
       <Card>
@@ -75,8 +65,16 @@ class Questions extends Component {
           }
         </CardText>
         <CardActions>
-          <FlatButton label="Vote #1" onClick={() => this.handleAddVote('optionOne')}/>
-          <FlatButton label="Vote #2" onClick={() => this.handleAddVote('optionTwo')}/>
+          <FlatButton
+            label="Vote #1"
+            onClick={() => this.handleAddVote('optionOne')}
+            disabled={alreadyVoted}
+          />
+          <FlatButton
+            label="Vote #2"
+            onClick={() => this.handleAddVote('optionTwo')}
+            disabled={alreadyVoted}
+          />
         </CardActions>
       </Card>
     )

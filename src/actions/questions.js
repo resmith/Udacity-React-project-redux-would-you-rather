@@ -10,9 +10,6 @@ export function receiveQuestions (questions) {
 }
 
 function addVote (question, answer, authedUser) {
-  console.log('actions addVote question:', question)
-  console.log('actions addVote authedUser:', authedUser)
-  console.log('actions addVote vote:', answer)
   return {
     type: ADD_VOTE,
     question,
@@ -22,7 +19,6 @@ function addVote (question, answer, authedUser) {
 }
 
 function addQuestion (question) {
-  console.log('actions addQuestion question authedUser:', question)
   return {
     type: ADD_QUESTION,
     question
@@ -32,7 +28,6 @@ function addQuestion (question) {
 export function handleAddVote (question, vote, authedUser) {
   return (dispatch, getState) => {
     const { authedUser } = getState()
-    console.log('actions handleAddVote return authedUser:', authedUser)
     dispatch(showLoading())
 
     return saveQuestionAnswer({
@@ -46,9 +41,7 @@ export function handleAddVote (question, vote, authedUser) {
 }
 
 export function handleAddPoll (info) {
-
   return (dispatch, getState) => {
-    console.log('actions questions handleAddPoll info:', info)
     const { authedUser } = getState()
     dispatch(showLoading())
 
@@ -58,7 +51,6 @@ export function handleAddPoll (info) {
       author: authedUser
     }
     return saveQuestion(question)
-      // .then((savedQuestion) => console.log('saveQuestion2 savedQuestion', savedQuestion))
       .then((savedQuestion) => dispatch(addQuestion(savedQuestion)))
       .then(() => dispatch(hideLoading()))
   }

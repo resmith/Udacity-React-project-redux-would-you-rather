@@ -1,9 +1,8 @@
 import React, {Component} from 'react'
-// import ReactDOM from 'react-dom'
-
-// import PropTypes from "prop-types";
 import {connect} from 'react-redux'
-// import {Link, withRouter} from 'react-router-dom'
+
+// These imports place resources for the page to utilize
+// So each and every page does not have to repeat the include
 import {ConnectedRouter, push} from 'connected-react-router'
 import ReactTooltip from 'react-tooltip'
 
@@ -19,9 +18,11 @@ import NavigationMenu from 'material-ui/svg-icons/navigation/menu'
 
 import { Route, Switch, Redirect } from 'react-router'
 
-// import { protectedRoutes, publicRoutes, signinRoute } from '../routes'
+// import { Cookies } from 'cookies'
+
 import {handleInitialData} from '../actions/shared'
-import { setAuthedUser } from '../actions/authedUser'
+import { getInitialData } from '../utils/api'
+// import { setAuthedUser } from '../actions/authedUser'
 import Dashboard from '../components/Dashboard'
 import NewPoll from '../components/NewPoll'
 import Questions from '../components/Questions'
@@ -30,12 +31,6 @@ import Signin from '../components/Signin'
 import Help from '../components/Help'
 import PageNotFound from '../components/PageNotFound'
 import '../App.css'
-
-// class Login extends Component {
-//   render () {
-//     return (<FlatButton {...this.props} label="Login"/>)
-//   }
-// }
 
 const Login = ({dispatch}) => (
   <FlatButton onClick={() => dispatch(push('/signin'))} label="Login"/>
@@ -56,18 +51,23 @@ const NavMenu = ({dispatch}) => (
   </IconMenu>)
 
 const Logged = ({dispatch, userId}) => (
-  <IconMenu iconButtonElement={<IconButton > <MoreVertIcon/></IconButton>}
-    targetOrigin={{
-      horizontal: 'right',
-      vertical: 'top'
-    }} anchorOrigin={{
-      horizontal: 'right',
-      vertical: 'top'
-    }}>
-    <MenuItem primaryText="Sign out" onClick={() => dispatch(setAuthedUser(null))}/>
-    <MenuItem primaryText="Help" onClick={() => dispatch(push('/help'))}/>
-    <MenuItem primaryText={userId} />
-  </IconMenu>)
+  <div>
+    {userId}
+    <IconMenu iconButtonElement={<IconButton > <MoreVertIcon/></IconButton>}
+      targetOrigin={{
+        horizontal: 'right',
+        vertical: 'top'
+      }} anchorOrigin={{
+        horizontal: 'right',
+        vertical: 'top'
+      }}>
+      {/* <MenuItem primaryText="Sign out" onClick={() => dispatch(setAuthedUser(null))}/> */}
+      <MenuItem primaryText="Sign out" onClick={() => dispatch(push('/signin'))}/>
+      <MenuItem primaryText="Help" onClick={() => dispatch(push('/help'))}/>
+      <MenuItem primaryText={userId} />
+    </IconMenu>
+  </div>
+)
 
 class App extends Component {
   componentDidMount () {
@@ -75,8 +75,6 @@ class App extends Component {
   }
 
   render () {
-    console.log('App props:', this.props)
-    console.log('App state:', this.state)
     const { history, authedUser, dispatch, router } = this.props
 
     return (
@@ -96,18 +94,17 @@ class App extends Component {
               <Route exact path='/signin' component={Signin}/>
               <Route exact path='/leaderboard' component={Leaderboard}/>
 
+              {/*  If user is NOT authenticated */}
+              {!authedUser && <Route component={Signin}/> }
+
               {/* Protected Routes */}
               {authedUser && <Route exact path='/' component={Dashboard}/> }
               {authedUser && <Route exact path='/questions/new' component={NewPoll}/> }
               {authedUser && <Route exact path='/questions/:questionId' component={Questions}/> }
 
               {/*  If no routes match and user is authenticated */}
-              {authedUser && <Route path='/' component={PageNotFound}/> }
+              <Route component={PageNotFound}/>
 
-              {/*  If no routes match and user is NOT authenticated */}
-              {!authedUser && router.location.pathname !== '/signin' &&
-                <Redirect from="/" to="/signin"/>
-              }
             </Switch>
 
           </ConnectedRouter>

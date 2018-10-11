@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import CheckIcon from 'react-icons/lib/fa/check'
-// import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
-// import FlatButton from 'material-ui/FlatButton';
 
 import { handleAddPoll } from '../actions/questions'
 import PageNotFound from '../components/PageNotFound'
-// import { styles } from '../utils/styles'
 
 class NewPoll extends Component {
   componentWillMount () {
@@ -42,8 +39,6 @@ class NewPoll extends Component {
     }
     dispatch(handleAddPoll(question))
 
-    console.log('NewPoll handleSubmit', question);
-
     this.setState(() => ({
       optionOne: '',
       optionTwo: ''
@@ -53,8 +48,6 @@ class NewPoll extends Component {
   }
 
   render () {
-    // console.log('component NewPoll props:', this.props)
-    // const { authedUser, users, match } = this.props
     const { optionOne, optionTwo } = this.state
     const optionOneLeft = 280 - optionOne.length;
     const optionTwoLeft = 280 - optionTwo.length;
@@ -105,7 +98,7 @@ class NewPoll extends Component {
 }
 
 function mapStateToProps ({authedUser, users}, { match }) {
-  // const question = questions[id]
+
 
   return {
     authedUser,

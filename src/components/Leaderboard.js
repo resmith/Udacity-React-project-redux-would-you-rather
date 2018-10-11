@@ -18,11 +18,8 @@ import { styles } from '../utils/styles'
 class Leaderboard extends Component {
 
   render () {
-    console.log('component Leaderboard props:', this.props)
-    console.log('component Leaderboard state:', this.state)
     const { users } = this.props
     const showCheckboxes = false
-    console.log('component Leaderboard users:', users)
 
     //  ***  Tally up the questions and votes
     const leaderboard = users.sort((a, b) =>

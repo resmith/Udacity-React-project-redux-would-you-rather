@@ -158,13 +158,6 @@ export function _saveQuestion (question) {
         [formattedQuestion.id]: formattedQuestion
       }
 
-      // console.log('_saveQuestion authedUser',authedUser );
-      // console.log('_saveQuestion formattedQuestion',formattedQuestion );
-      // console.log('_saveQuestion formattedQuestion.id',formattedQuestion.id );
-      // console.log('_saveQuestion users[authedUser]',users[authedUser] );
-      // const newQUestions = users[authedUser].questions.concat([formattedQuestion.id]);
-      // console.log('_saveQuestion newQUestions',newQUestions );
-
       users = {
         ...users,
         [authedUser]: {

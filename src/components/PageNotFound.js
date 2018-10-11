@@ -6,9 +6,7 @@ class PageNotFound extends Component {
       <div>
         <h3>404 Page Not Found</h3>
 
-        The Help Page.
-
-        This is a public page viewabled by anyone to provide help
+        This page you are looking for is not available
       </div>
     )
   }

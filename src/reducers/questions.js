@@ -1,8 +1,6 @@
 import { RECEIVE_QUESTIONS, ADD_VOTE, ADD_QUESTION } from '../utils/constants'
 
 export default function questions (state = {}, action) {
-  console.log('reducers/questions questions action', action)
-  console.log('reducers/questions questions state', state)
   switch (action.type) {
     case RECEIVE_QUESTIONS :
       return {
@@ -13,13 +11,10 @@ export default function questions (state = {}, action) {
 
       return {
         ...state,
-        [action.question.id]: action.question,
-        [action.question.author]: {...action.authedUser,
-          questions: action.users[action.question.author].questions.concat([action.question.id])
-        }
+        [action.question.id]: action.question
       }
+
     case ADD_VOTE :
-      // console.log('***** reducer ADD_VOTE action', action)
       const { question, answer, authedUser } = action
 
       let updatedQuestion = { ...state[action.question.id],

@@ -20,6 +20,5 @@ export function saveQuestion (info) {
 }
 
 export function saveQuestionAnswer (info) {
-  console.log('saveQuestionAnswer info:', info)
   return _saveQuestionAnswer(info)
 }

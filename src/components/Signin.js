@@ -16,22 +16,18 @@ class Signin extends Component {
     props.dispatch(setAuthedUser(null))
   }
 
-  // componentWilldMount() {
-  //   this.props.dispatch(setAuthedUser(null))
-  // }
 
   handleChange = (event, index, value) => {
     event.preventDefault()
     const { dispatch } = this.props
     this.setState({userId: value.id})
     dispatch(setAuthedUser(value))
+    if ( this.props.location.pathname == '/signin') {
     dispatch(push('/'))
+    }
   }
 
   render() {
-    console.log('Signing props:', this.props);
-    console.log('this.state.userId:',this.state.userId);
-
     const { users} = this.props
 
     return (
@@ -67,10 +63,4 @@ function mapStateToProps ({ authedUser, users}) {
   }
 }
 
-// const mapDispatchToProps = dispatch => ({
-//   setUser: (userId) => dispatch(setAuthedUser(userId)),
-// })
-//     users: Object.keys(users).sort()
-
 export default connect(mapStateToProps)(Signin)
-// export default connect(mapStateToProps, mapDispatchToProps)(Signin)
