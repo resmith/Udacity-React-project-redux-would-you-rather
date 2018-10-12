@@ -3,23 +3,22 @@
 ## Would you Rather
 by R.E.Smith
 
-[Project Specs Summary](./ProjectSpecs.html)
-[Project Specs](./ProjectSpecs.md)
+[Project Specs](./ProjectSpecs.md)  
 
-Would you Rather?
+Would you Rather?  
 
-A polling application demonstrating React & Redux
+A polling application demonstrating React & Redux  
 
-The application structure is in components/App.JS
+The application structure is in components/App.JS  
 
-Structure
-  App.js
-    MuiThemeProvider
-        <AppBar that has an iconElementLeft
-          and an iconElementRight
-            iconElementRight changes depending if the user is logged in
-            If logged in it has a list including logout
-            If not, the list has signin
+Structure  
+  App.js  
+    MuiThemeProvider  
+        <AppBar that has an iconElementLeft  
+          and an iconElementRight  
+            iconElementRight changes depending if the user is logged in  
+            If logged in it has a list including logout  
+            If not, the list has signin  
 
 
 
