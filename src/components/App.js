@@ -44,7 +44,7 @@ const NavMenu = ({dispatch}) => (
       vertical: 'top'
     }}>
     <MenuItem primaryText="Home" onClick={() => dispatch(push('/'))}/>
-    <MenuItem primaryText="New Question" onClick={() => dispatch(push('/questions/new'))}/>
+    <MenuItem primaryText="New Question" onClick={() => dispatch(push('/questions/add'))}/>
     <MenuItem primaryText="Leaderboard" onClick={() => dispatch(push('/leaderboard'))}/>
   </IconMenu>)
 
@@ -91,14 +91,15 @@ class App extends Component {
               {/* Public Routes */}
               <Route path='/help' exact component={Help}/>
               <Route exact path='/signin' component={Signin}/>
-              <Route exact path='/leaderboard' component={Leaderboard}/>
+
 
               {/*  If user is NOT authenticated */}
               {!authedUser && <Route component={Signin}/> }
 
               {/* Protected Routes */}
               {authedUser && <Route exact path='/' component={Dashboard}/> }
-              {authedUser && <Route exact path='/questions/new' component={NewPoll}/> }
+              {authedUser && <Route exact path='/leaderboard/' component={Leaderboard}/> }
+              {authedUser && <Route exact path='/questions/add' component={NewPoll}/> }
               {authedUser && <Route exact path='/questions/:questionId' component={Questions}/> }
 
               {/*  If no routes match and user is authenticated */}
