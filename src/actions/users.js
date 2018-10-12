@@ -19,7 +19,7 @@ function addVoteToUser (question, answer, authedUser) {
 
 export function handleAddVoteToUser (question, vote, authedUser) {
   return (dispatch, getState) => {
-    const { users } = getState()
+    // const { users } = getState()
     dispatch(showLoading())
     dispatch(addVoteToUser(question, vote, authedUser))
     dispatch(hideLoading())

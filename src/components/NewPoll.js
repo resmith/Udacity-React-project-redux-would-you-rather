@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import CheckIcon from 'react-icons/lib/fa/check'
 
 import { handleAddPoll } from '../actions/questions'
-import PageNotFound from '../components/PageNotFound'
 
 class NewPoll extends Component {
   componentWillMount () {

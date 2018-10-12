@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import CheckIcon from 'react-icons/lib/fa/check'
 import {
   Table,
   TableBody,
@@ -10,10 +9,6 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table'
-
-
-import { DEFAULT_AVATAR } from '../utils/constants'
-import { styles } from '../utils/styles'
 
 class Leaderboard extends Component {
 

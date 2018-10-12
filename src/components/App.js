@@ -16,9 +16,7 @@ import FlatButton from 'material-ui/FlatButton'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu'
 
-import { Route, Switch, Redirect } from 'react-router'
-
-// import { Cookies } from 'cookies'
+import { Route, Switch } from 'react-router'
 
 import {handleInitialData} from '../actions/shared'
 import { getInitialData } from '../utils/api'
@@ -85,7 +83,8 @@ class App extends Component {
             iconElementLeft={<NavMenu dispatch={dispatch} />}
             iconElementRight={authedUser
               ? <Logged dispatch={dispatch} userId={authedUser}/>
-              : <Login dispatch={dispatch} />}/>
+              : <Login dispatch={dispatch} />}
+          />
           <LoadingBar />
           <ConnectedRouter history={history}>
             <Switch>

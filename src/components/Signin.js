@@ -22,7 +22,7 @@ class Signin extends Component {
     const { dispatch } = this.props
     this.setState({userId: value.id})
     dispatch(setAuthedUser(value))
-    if ( this.props.location.pathname == '/signin') {
+    if ( this.props.location.pathname === '/signin') {
     dispatch(push('/'))
     }
   }
