@@ -9,6 +9,7 @@ Would you Rather?
 
 A polling application demonstrating React & Redux  
 
+```
 The application structure is in components/App.JS  
 
 Structure  
@@ -40,11 +41,7 @@ Structure
 
           </Switch>
         </ConnectedRouter>
-
-
-
-
-
+```
 
 
 ## `Installation`
